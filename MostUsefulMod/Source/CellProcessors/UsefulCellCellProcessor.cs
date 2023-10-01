@@ -18,7 +18,7 @@ namespace Indev2
 
         public override string Name => "SelfDestruct";
         public override int CellType => 10;
-        public override string CellSpriteIndex => "Trover";
+        public override string CellSpriteIndex => "Useful";
 
         private IDictionary<int, bool> hasCellMoved = new Dictionary<int, bool>();
 

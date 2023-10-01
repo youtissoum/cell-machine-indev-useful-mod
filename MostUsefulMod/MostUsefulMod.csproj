@@ -62,11 +62,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
+    <Content Include="Textures\Useful.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir "Most Useful Mod $(ConfigurationName)"
+copy $(TargetFileName) "Most Useful Mod $(ConfigurationName)\Most Useful Mod $(ConfigurationName)$(TargetExt)" /Y
+mkdir "Most Useful Mod $(ConfigurationName)\Textures"
+robocopy "$(ProjectDir)Textures" "Most Useful Mod $(ConfigurationName)\Textures\\" /E
+exit /B
+rem "thank you robocopy for using exit code 1"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
