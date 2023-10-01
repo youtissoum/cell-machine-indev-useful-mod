@@ -22,10 +22,10 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore -c Release
-    # - name: Zip the build
-    #   run: cd MostUsefulMod\bin\Release && 7z a MostUsefulMod.zip "Most Useful Mod"
+    - name: Zip the build
+      run: cd MostUsefulMod\bin\Release && 7z a MostUsefulMod.zip "Most Useful Mod"
     - uses: actions/upload-artifact@v3
       with:
         name: build
         path: |
-          MostUsefulMod\bin\Release\Most Useful Mod
+          MostUsefulMod\bin\Release\MostUsefulMod.zip
