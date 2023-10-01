@@ -28,4 +28,4 @@ jobs:
       with:
         name: build
         path: |
-          MostUsefulMod\bin\Release\MostUsefulMod.zip
+          "MostUsefulMod\bin\Release\Most Useful Mod"
