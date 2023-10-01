@@ -61,21 +61,32 @@
     <Compile Include="Source\StdModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.md" />
     <Content Include="Textures\Useful.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <TextureFiles Include="Textures/*.png"/>
+    </ItemGroup>
+
+    <MakeDir Directories="$(OutDir)Most Useful Mod"/>
+    <Copy SourceFiles="$(OutDir)MostUsefulMod.dll" DestinationFiles="$(OutDir)Most Useful Mod/Most Useful Mod.dll"/>
+    <Message Text="$(OutDir)MostUsefulMod.dll -> $(OutDir)Most Useful Mod/Most Useful Mod.dll" Importance="high" />
+    <MakeDir Directories="$(OutDir)Most Useful Mod/Textures"/>
+    <Copy Sourcefiles="@(TextureFiles)" DestinationFolder="$(OutDir)Most Useful Mod/textures"/>
+    <Message Text="Textures/*.png -> $(OutDir)Most Useful Mod/Textures/" Importance="high" />
+  </Target>
+  <!-- <PropertyGroup>
     <PostBuildEvent>mkdir "Most Useful Mod $(ConfigurationName)"
 copy $(TargetFileName) "Most Useful Mod $(ConfigurationName)\Most Useful Mod $(ConfigurationName)$(TargetExt)" /Y
 mkdir "Most Useful Mod $(ConfigurationName)\Textures"
 robocopy "$(ProjectDir)Textures" "Most Useful Mod $(ConfigurationName)\Textures\\" /E
 exit /B
 rem "thank you robocopy for using exit code 1"</PostBuildEvent>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
